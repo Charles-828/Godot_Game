@@ -1,0 +1,431 @@
+[gd_scene load_steps=46 format=2]
+
+[ext_resource path="res://cat/ProgressBar.gd" type="Script" id=1]
+[ext_resource path="res://shadow.png" type="Texture" id=2]
+[ext_resource path="res://scripts/NetworkIdentifier.gd" type="Script" id=4]
+[ext_resource path="res://fonts/NotoSansSC-Light.otf" type="DynamicFontData" id=5]
+[ext_resource path="res://cat/Cat.gd" type="Script" id=6]
+
+[sub_resource type="StreamTexture" id=50]
+flags = 4
+load_path = "res://.import/cat_anime.png-044802aef2ba8f9add06141aa5756b41.stex"
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 17.0294
+
+[sub_resource type="DynamicFont" id=1]
+outline_size = 1
+outline_color = Color( 0.0784314, 0.0745098, 0.0745098, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.945098, 0.054902, 0.054902, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.215686, 0.203922, 0.203922, 1 )
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 18.1108
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "catch"
+
+[sub_resource type="AnimationNodeAnimation" id=16]
+animation = "dead"
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "hurt"
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "throw"
+
+[sub_resource type="AnimationNodeAnimation" id=38]
+animation = "walk_left"
+
+[sub_resource type="AnimationNodeAnimation" id=39]
+animation = "walk_right"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=20]
+blend_point_0/node = SubResource( 38 )
+blend_point_0/pos = -0.1
+blend_point_1/node = SubResource( 39 )
+blend_point_1/pos = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+advance_condition = "walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+advance_condition = "not_walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+
+[sub_resource type="AnimationNodeStateMachine" id=36]
+states/catch/node = SubResource( 15 )
+states/catch/position = Vector2( 429, 459 )
+states/dead/node = SubResource( 16 )
+states/dead/position = Vector2( 621, 98 )
+states/hurt/node = SubResource( 17 )
+states/hurt/position = Vector2( 621, 459 )
+states/idle/node = SubResource( 18 )
+states/idle/position = Vector2( 353, 286 )
+states/throw/node = SubResource( 19 )
+states/throw/position = Vector2( 429, 98 )
+states/walk/node = SubResource( 20 )
+states/walk/position = Vector2( 729, 286 )
+transitions = [ "idle", "walk", SubResource( 21 ), "walk", "idle", SubResource( 22 ), "walk", "dead", SubResource( 23 ), "idle", "dead", SubResource( 24 ), "idle", "throw", SubResource( 25 ), "walk", "throw", SubResource( 26 ), "throw", "dead", SubResource( 27 ), "idle", "catch", SubResource( 28 ), "walk", "catch", SubResource( 29 ), "walk", "hurt", SubResource( 30 ), "idle", "hurt", SubResource( 31 ), "throw", "idle", SubResource( 32 ), "catch", "idle", SubResource( 33 ), "hurt", "idle", SubResource( 34 ), "dead", "idle", SubResource( 35 ) ]
+start_node = "idle"
+graph_offset = Vector2( -76.7674, 73.4801 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=37]
+
+[sub_resource type="Animation" id=41]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("RotatePos/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("RotatePos/Body:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("RotatePos:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=48]
+resource_name = "catch"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("RotatePos/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 18, 19, 20, 21, 22 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_catch"
+}, {
+"args": [  ],
+"method": "_on_catch_done"
+} ]
+}
+
+[sub_resource type="Animation" id=49]
+resource_name = "dead"
+tracks/0/type = "value"
+tracks/0/path = NodePath("RotatePos/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 13, 14, 15, 16, 17 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.9 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_dead_done"
+} ]
+}
+
+[sub_resource type="Animation" id=47]
+resource_name = "hurt"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("RotatePos/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_hurt_done"
+} ]
+}
+
+[sub_resource type="Animation" id=42]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath("RotatePos/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=44]
+resource_name = "throw"
+length = 0.7
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.5, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_throw_ball"
+}, {
+"args": [  ],
+"method": "_on_throw_done"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("RotatePos/Body:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 6, 7, 8, 9, 10, 11 ]
+}
+
+[sub_resource type="Animation" id=45]
+resource_name = "walk_left"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("RotatePos/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 1, 2, 3, 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("RotatePos:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=46]
+resource_name = "walk_right"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("RotatePos/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("RotatePos:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 1, 1 ) ]
+}
+
+[node name="Cat" type="KinematicBody2D" groups=["cat"]]
+collision_mask = 9
+script = ExtResource( 6 )
+
+[node name="RotatePos" type="Position2D" parent="."]
+
+[node name="Body" type="Sprite" parent="RotatePos"]
+position = Vector2( -1, -56 )
+texture = SubResource( 50 )
+hframes = 23
+
+[node name="ThrowPosition2D" type="Position2D" parent="RotatePos"]
+position = Vector2( 25, -50 )
+
+[node name="CollectArea2D" type="Area2D" parent="RotatePos"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RotatePos/CollectArea2D"]
+position = Vector2( 15, -9 )
+shape = SubResource( 5 )
+
+[node name="Shadow" type="Sprite" parent="."]
+position = Vector2( 2, -22 )
+z_index = -1
+texture = ExtResource( 2 )
+
+[node name="NetworkIdentifier" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="UI" type="Node2D" parent="."]
+position = Vector2( -1, -65 )
+
+[node name="NameLabel" type="Label" parent="UI"]
+margin_left = -62.0
+margin_top = -24.0
+margin_right = 90.0
+margin_bottom = 1.0
+theme = SubResource( 2 )
+text = "修貓"
+align = 1
+
+[node name="HealthBar" type="ProgressBar" parent="UI"]
+margin_left = -62.0
+margin_top = 4.0
+margin_right = 91.0
+margin_bottom = 12.0
+custom_styles/fg = SubResource( 3 )
+custom_styles/bg = SubResource( 4 )
+value = 50.0
+percent_visible = false
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -15 )
+shape = SubResource( 6 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+smoothing_enabled = true
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 36 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 37 )
+parameters/conditions/not_walk = false
+parameters/conditions/walk = false
+parameters/walk/blend_position = 0.0421456
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 41 )
+anims/catch = SubResource( 48 )
+anims/dead = SubResource( 49 )
+anims/hurt = SubResource( 47 )
+anims/idle = SubResource( 42 )
+anims/throw = SubResource( 44 )
+anims/walk_left = SubResource( 45 )
+anims/walk_right = SubResource( 46 )
